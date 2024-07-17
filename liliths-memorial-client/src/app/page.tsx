@@ -8,7 +8,7 @@ type PageEntry = {
 };
 
 async function getData(): Promise<PageEntry[]> {
-  const res = await fetch(`${process.env.dataApi}getHomepageEntries`)
+  const res = await fetch(`${process.env.dataApi}getHomepageEntries`, { next: { tags: ['homepage'] } })
  
   if (!res.ok) {
     throw new Error('Failed to fetch data')
