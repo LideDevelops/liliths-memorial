@@ -4,7 +4,7 @@ import { auth } from './auth';
 export async function middleware(request: NextRequest) {
   const session = await auth();
  
-  if (!session?.user && request.url.match('/edit')) {
+  if (!session?.user && request.url.match('/admin')) {
     return Response.redirect(new URL('/', request.url))
   }
 }

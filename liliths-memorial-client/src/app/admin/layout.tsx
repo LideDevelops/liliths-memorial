@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 export default function Layout({ children }: { children: ReactNode }) {
     return (
       <>
-        <main>{children}</main>
+        <div>{children}</div>
       </>
     )
   }
