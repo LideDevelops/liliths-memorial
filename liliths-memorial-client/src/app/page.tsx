@@ -1,3 +1,4 @@
+import EntryDisplay from "@/components/EntryDisplay";
 import { SignIn } from "@/components/sign-in";
 import { PageEntry } from "@/lib/definitions";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
@@ -25,10 +26,7 @@ export default async function Home() {
       .sort((a: PageEntry, b: PageEntry) => a.desiredIndex - b.desiredIndex)
       .map((entry: PageEntry) => {
         return (
-          <div>
-            <h2>{entry.title}</h2>
-            <p>{entry.text}</p>
-          </div>
+          <EntryDisplay entry={entry} />
         );
       })}
       <Image src="/lilith-on-keyboard_500x888.webp" alt="Lilith liegt auf der Tastatur." width="500" height="888"/>
