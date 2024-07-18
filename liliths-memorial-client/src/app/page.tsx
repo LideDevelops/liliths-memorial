@@ -1,15 +1,12 @@
 import { SignIn } from "@/components/sign-in";
+import { PageEntry } from "@/lib/definitions";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 
-type PageEntry = {
-  desiredIndex: number;
-  title: string;
-  text: string;
-};
+
 
 async function getData(): Promise<PageEntry[]> {
-  const res = await fetch(`${process.env.dataApi}getHomepageEntries`, { next: { tags: ['homepage'] } })
+  const res = await fetch(`${process.env.dataApi}entries`, { next: { tags: ['homepage'] } })
  
   if (!res.ok) {
     throw new Error('Failed to fetch data')
