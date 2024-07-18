@@ -1,3 +1,4 @@
+import { SignIn } from "@/components/sign-in";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 
@@ -21,6 +22,7 @@ export default async function Home() {
   const pageEntries = await getData()
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <SignIn></SignIn>
       <h1>Ein Ort um Lilith zu gedenken.</h1>
       {pageEntries
       .sort((a: PageEntry, b: PageEntry) => a.desiredIndex - b.desiredIndex)
