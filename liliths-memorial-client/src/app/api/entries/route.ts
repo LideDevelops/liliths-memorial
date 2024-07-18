@@ -1,6 +1,8 @@
 import { PageEntry } from "@/lib/definitions";
 import { MongoClient } from "mongodb";
 import Joi from 'joi';
+import { auth } from "@/auth";
+import { revalidateTag } from "next/cache";
 
 export async function GET(request: Request) {
 
@@ -34,6 +36,10 @@ const pageEntrySchema = Joi.object({
   }
 
 export async function POST(request: Request) {
+    const session = await auth();
+    if(!session?.user) {
+        return new Response("Unauthorized", { status: 401 });
+    }
     const client = new MongoClient(process.env.MONGODB_URI ?? "", {
     });
 
@@ -54,7 +60,7 @@ export async function POST(request: Request) {
             dataToInsert.desiredIndex = index[0].desiredIndex + 1;
         }
         await collection.insertOne(dataToInsert);
-
+        revalidateTag('homepage');
         return new Response(null, { status: 201 });
     } catch (error) {
         return new Response("Something went wrong!", { status: 500 });
