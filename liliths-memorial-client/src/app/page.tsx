@@ -24,11 +24,16 @@ export default async function Home() {
       <h1>Ein Ort um Lilith zu gedenken.</h1>
       {pageEntries
       .sort((a: PageEntry, b: PageEntry) => a.desiredIndex - b.desiredIndex)
-      .map((entry: PageEntry) => {
+      .map((entry: PageEntry, index: number) => {
         return (
-          <EntryDisplay entry={entry} />
+          <EntryDisplay
+            entry={{ ...entry, imageUrl: '/lilith-on-keyboard_500x888.webp' }}            
+            width={index % 2 !== 1 ? undefined : 500} // This will be true for every second entry
+            height={index % 2 !== 1 ? undefined : 888} // This will be true for every second entry
+            imagePosition={index % 3 !== 0 ? 'left' : 'right'}
+          />
         );
-      })}
+      })};
       <Image src="/lilith-on-keyboard_500x888.webp" alt="Lilith liegt auf der Tastatur." width="500" height="888"/>
     </main>
   );
