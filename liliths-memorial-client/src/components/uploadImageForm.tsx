@@ -2,7 +2,11 @@
 
 import React, { useState } from 'react';
 
-export const UploadImageForm = () => {
+interface UploadImageFormProps {
+  onImageUpload?: (imageName: string) => void; // Optional prop
+}
+
+export const UploadImageForm = ({ onImageUpload }: UploadImageFormProps) => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
@@ -38,6 +42,7 @@ export const UploadImageForm = () => {
         // Reset preview and selected file after successful upload
         setPreviewUrl(null);
         setSelectedFile(null);
+        onImageUpload?.(result.name);
       } else {
         alert("Upload failed");
       }
