@@ -1,0 +1,28 @@
+h1 {
+    font-size: 32px;
+}
+
+ul {
+    list-style: inside;
+    font-size: large;
+}
+
+a {
+    color: #a5bdeb;
+    text-decoration: none;
+}
+
+.BlogBox {
+    margin: 40px 20% 20px 20%;
+    padding: 10px;
+    border: 1px solid #a5bdeb;
+    border-radius: 5px;
+    background-color: #464646;
+    transition: transform 0.3s ease-in-out;
+    
+}
+
+
+.BlogBox:hover {
+    transform: scale(1.1);
+}
